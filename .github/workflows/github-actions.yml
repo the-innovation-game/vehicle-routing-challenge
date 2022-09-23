@@ -25,7 +25,6 @@ jobs:
           dotnet-version: "6.0.x"
       - run: |
           branch=${{ github.ref_name }}
-          branch=test/algorithm/RandomSolver
           if [[ "$branch" =~ ^[0-9a-zA-Z]+/algorithm/[0-9a-zA-Z]+$ ]]; then
             dotnet build -o app
             cd app
