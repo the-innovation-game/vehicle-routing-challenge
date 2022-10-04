@@ -62,7 +62,7 @@ You should adhere to the following rules if you want to "upload" an algorithm:
 
 
 ## Support
-[Join our Discord](https://discord.gg/SESJzxwY)
+[Join our Discord](https://discord.gg/YTJGVpZD)
 
 ## License
 
