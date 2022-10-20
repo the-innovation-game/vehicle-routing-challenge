@@ -62,7 +62,7 @@ You should adhere to the following rules if you want to "upload" an algorithm:
 
 
 ## Support
-[Join our Discord](https://discord.gg/YTJGVpZD)
+[Join our Discord](http://discord.the-innovation-game.com)
 
 ## License
 
