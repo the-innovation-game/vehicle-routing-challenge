@@ -33,9 +33,11 @@ git checkout -b <your handle>/algorithm/<algorithm name>
 
 ![](assets/my-first-algo.png)
 
-* Modify `VehicleRouting.Runner\Program.cs` to use your algorithm and start developing / debugging!
+6. Modify `VehicleRouting.Runner\Program.cs` to use your algorithm and start developing / debugging!
 
 ![](assets/start-debugging.png)
+
+7. Open a Pull Request with your branch once you are ready to submit!
 
 ## Rules
 
