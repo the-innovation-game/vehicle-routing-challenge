@@ -20,7 +20,7 @@ The challenge is to develop an algorithm that finds routes which do not exceed t
 
 3. Create a branch for your algorithm
 ```
-git checkout -b <your handle>/algorithm/<algorithm name>
+git checkout -b <team name>/algorithm/<algorithm name>
 ```
 
 3. Open `VehicleRouting.sln` with Visual Studio 2022
@@ -37,35 +37,7 @@ git checkout -b <your handle>/algorithm/<algorithm name>
 
 ![](assets/start-debugging.png)
 
-7. Open a Pull Request with your branch once you are ready to submit!
-
-## Rules
-
-You should adhere to the following rules if you want to "upload" an algorithm:
-
-1. See `Uploading Algorithms` in the [main docs](https://test.the-innovation-game.com/get-involved) for the non-challenge specific rules
-
-2. Your algorithm must implement the base class in `VehicleRouting.Algorithms\Abstract.cs`:
-    * `override` the `Solve` function
-    * You must invoke `WriteAlgoIdentifier` every so often with an int that cannot be guessed without running your algorithm
-    ```
-    // e.g.
-    WriteAlgoIdentifier(Random.Next() / routes.Count * routes[0].Sum());
-    ```
-    * if you need randomness, use the provided `System.Random` instance: `this.Random`
-
-3. If you want to give up on the challenge (e.g. maybe its unsolvable), you should return an empty `List`
-
-4. Your algorithm class name and filename must be `<algorithm_name>.cs`
-
-5. All your utility classes should be contained in a separate namespace `VehicleRouting.Algorithms.<algorithm_name>Utils`
-
-6. If you are improving an existing algorithm, make a copy of the file before making modifications
-
+7. During the allowed window, push up your branch and open a pull request to merge your branch to the master repository 
 
 ## Support
 [Join our Discord](http://discord.the-innovation-game.com)
-
-## License
-
-TBC

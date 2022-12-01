@@ -55,8 +55,13 @@ namespace VehicleRouting.Algorithms
                     routes.Add(route);
                 }
 
-                // generate and write an int that cannot be guessed without running your algorithm
-                WriteAlgoIdentifier(Random.Next() / routes.Count * routes[0].Sum());
+                // generate and write a unique integer that identifies when someone is using your algorithm
+                int uniqueInt = 1;
+                for (int i = 0; i < routes.Count; i++)
+                    uniqueInt *= routes[i].Sum();
+                WriteAlgoIdentifier(uniqueInt);
+
+                // check if solution has been found
                 if (AreRoutesSolution(routes))
                     return routes;
             }
