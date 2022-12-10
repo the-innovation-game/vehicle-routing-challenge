@@ -7,48 +7,70 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Satisfiability.Algorithms
+namespace VehicleRouting.Algorithms
 {
     public class BetterRandomSolver : Abstract
     {
         public BetterRandomSolver(
             int seed,
             Action<int> writeAlgoIdentifier,
-            Func<List<bool>, bool> isInputSolution,
+            Func<List<List<int>>, bool> areRoutesSolution,
+            Func<List<List<int>>, int> evaluateRoutesTotalDistance,
             bool debugMode
-        ) : base(seed, writeAlgoIdentifier, isInputSolution, debugMode)
+        ) : base(seed, writeAlgoIdentifier, areRoutesSolution, evaluateRoutesTotalDistance, debugMode)
         {
         }
-        public override List<bool> Solve(int numVariables, List<List<int>> clauses)
+
+        public override List<List<int>> Solve(int[] demands, int[,] distanceMatrix, int vehicleCapacity, int maxDistance)
         {
-            for (int attempt = 1; attempt <= 1000; attempt++)
+            for (int attempt = 1; attempt <= 2000; attempt++)
             {
                 if (DebugMode && attempt % 200 == 0)
                     Debug.Log($"Number of Attempts: {attempt}");
 
-                List<bool> input = new List<bool>();
-                int numVariablesRemaining = numVariables;
-                while (numVariablesRemaining != 0)
+                List<List<int>> routes = new();
+                List<int> notVisited = Enumerable.Range(1, demands.Length - 1).ToList();
+                while (notVisited.Count > 0)
                 {
-                    int n = Math.Min(numVariablesRemaining, 30);
-                    int nBits = Random.Next(1 << n);
-                    for (int i = 0; i < n; i++)
-                        input.Add((nBits & (1 << i)) != 0);
-                    numVariablesRemaining -= n;
+                    List<int> route = new();
+
+                    int currentNode = 0;
+                    int capacity = vehicleCapacity;
+
+                    while (capacity > 0 && notVisited.Count > 0)
+                    {
+                        var eligibleNodes = notVisited
+                            .Select((node, i) => new { Index = i, Node = node })
+                            .Where(pair => demands[pair.Node] <= capacity)
+                            .OrderBy(pair => distanceMatrix[currentNode, pair.Node])
+                            .ToList();
+
+                        if (eligibleNodes.Count() > 0)
+                        {
+                            var chosen = eligibleNodes[Random.Next((int)Math.Ceiling(eligibleNodes.Count / 2.0))];
+                            capacity -= demands[chosen.Node];
+                            route.Add(chosen.Node);
+                            notVisited.RemoveAt(chosen.Index);
+                            currentNode = chosen.Node;
+                        }
+                        else
+                            break;
+                    }
+
+                    routes.Add(route);
                 }
 
                 // generate and write a unique integer that identifies when someone is using your algorithm
                 int uniqueInt = 1;
-                for (int i = 1; i < input.Count; i++)
-                    uniqueInt *= input[i] ? i : 1;
+                for (int i = 0; i < routes.Count; i++)
+                    uniqueInt *= routes[i].Sum();
                 WriteAlgoIdentifier(uniqueInt);
 
                 // check if solution has been found
-                if (IsInputSolution(input))
-                    return input;
+                if (AreRoutesSolution(routes))
+                    return routes;
             }
             return new();
         }
     }
 }
-
