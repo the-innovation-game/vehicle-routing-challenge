@@ -5,23 +5,23 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace VehicleRouting.Algorithms
+namespace Satisfiability.Algorithms
 {
     public class BetterRandomSolver : Abstract
     {
         public BetterRandomSolver(
             int seed,
             Action<int> writeAlgoIdentifier,
-            Func<List<List<int>>, bool> areRoutesSolution,
-            Func<List<List<int>>, int> evaluateRoutesTotalDistance,
+            Func<List<bool>, bool> isInputSolution,
             bool debugMode
-        ) : base(seed, writeAlgoIdentifier, areRoutesSolution, evaluateRoutesTotalDistance, debugMode)
+        ) : base(seed, writeAlgoIdentifier, isInputSolution, debugMode)
         {
         }
-       public override List<bool> Solve(int numVariables, List<List<int>> clauses)
+        public override List<bool> Solve(int numVariables, List<List<int>> clauses)
         {
-            for (int attempt = 1; attempt <= 2000; attempt++)
+            for (int attempt = 1; attempt <= 1000; attempt++)
             {
                 if (DebugMode && attempt % 200 == 0)
                     Debug.Log($"Number of Attempts: {attempt}");
@@ -51,3 +51,4 @@ namespace VehicleRouting.Algorithms
         }
     }
 }
+
