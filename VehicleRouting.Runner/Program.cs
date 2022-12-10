@@ -10,7 +10,7 @@ namespace VehicleRouting.Runner
             if (args.Length == 0)
             {
                 args = new string[] {
-                    $"yesWeCan", // typeof(Algorithms.RandomSolver).Name
+                    $"RandomSolver", // typeof(Algorithms.RandomSolver).Name
                     $"{false}",
                     $"{int.MaxValue}"
                 };
