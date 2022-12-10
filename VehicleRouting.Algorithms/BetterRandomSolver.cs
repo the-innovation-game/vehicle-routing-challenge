@@ -23,7 +23,7 @@ namespace VehicleRouting.Algorithms
 
         public override List<List<int>> Solve(int[] demands, int[,] distanceMatrix, int vehicleCapacity, int maxDistance)
         {
-            for (int attempt = 1; attempt <= 2000; attempt++)
+            for (int attempt = 1; attempt <= 10000; attempt++)
             {
                 if (DebugMode && attempt % 200 == 0)
                     Debug.Log($"Number of Attempts: {attempt}");
