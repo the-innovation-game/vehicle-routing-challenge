@@ -1,12 +1,17 @@
-﻿using System;
+﻿/*
+    Acknowledgements:
+    Improved on RandomSolver by changing spliting code in nested while.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace VehicleRouting.Algorithms
 {
-    public class RandomSolver : Abstract
+    public class yesWeCan : Abstract
     {
-        public RandomSolver(
+        public yesWeCan(
             int seed,
             Action<int> writeAlgoIdentifier,
             Func<List<List<int>>, bool> areRoutesSolution,
@@ -42,7 +47,8 @@ namespace VehicleRouting.Algorithms
 
                         if (eligibleNodes.Count() > 0)
                         {
-                            var chosen = eligibleNodes[Random.Next((int)Math.Ceiling(eligibleNodes.Count / 2.0))];
+                            var chosenIndex = Random.Next((int)Math.Ceiling(eligibleNodes.Count / 2.0));
+                            var chosen = eligibleNodes[chosenIndex];
                             capacity -= demands[chosen.Node];
                             route.Add(chosen.Node);
                             notVisited.RemoveAt(chosen.Index);
