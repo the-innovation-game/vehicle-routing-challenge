@@ -10,7 +10,7 @@ namespace VehicleRouting.Runner
             if (args.Length == 0)
             {
                 args = new string[] {
-                    typeof(Algorithms.SpicyTSP).Name,
+                    $"RandomSolver", // typeof(Algorithms.RandomSolver).Name
                     $"{false}",
                     $"{int.MaxValue}"
                 };
