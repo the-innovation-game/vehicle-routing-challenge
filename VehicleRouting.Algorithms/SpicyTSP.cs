@@ -89,7 +89,7 @@ namespace VehicleRouting.Algorithms
             int remainingDistance = maxDistance;
             while (unvisited.Count > 0 && remainingDistance>0)
             {
-                if (counter > 100000000)
+                if (counter > 10000)
                 {
                     return new();
                 }
@@ -123,14 +123,13 @@ namespace VehicleRouting.Algorithms
                             {
                                 subroute.Add(savings[i][0]);
                                 subroute.Add(savings[i][1]);
-                                previous_location = savings[i][1];
                                 unvisited.Remove(savings[i][0]);
                                 unvisited.Remove(savings[i][1]);
                                 to_remove.Add(i);
                                 currentCapacity -= savings[i][3];
-                                int tmp_dist = remainingDistance;
                                 remainingDistance -= (dist + distanceMatrix[previous_location, savings[i][0]]);
-                                int dist_delta = tmp_dist - remainingDistance;
+                                previous_location = savings[i][1];
+
                             }
                         }
                     }
